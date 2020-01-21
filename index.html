@@ -182,6 +182,34 @@
 </template>
 
 <script src="js/game.js"></script>
+<script>
+  var fireballSize = 22;
+  var getFireballSpeed = function(left) {
+    return true ? 5 : 2;
+  };
+  var wizardSpeed = 3;
+  var wizardWidth = 70;
+  var getWizardHeight = function() {
+    //Найдем высоту мага, умножив значение ширины 1.337 (по заданию)
+    var wizardHeight = 1.337 * wizardWidth;
+
+    return wizardHeight;
+  } ;
+  var getWizardX = function(width) {
+    //Найдем координату центра игрового поля
+    var fieldCenter = width / 2;
+    //Найдем координату мага, чтобы он стоял в центре
+    var wizardX = fieldCenter - wizardWidth / 2;
+
+    return wizardX;
+  };
+  var getWizardY = function(height) {
+    //Маг должен появиться на высоте 2/3 от земли. Отсчет от вернего левого угла. Найдет координату
+    var wizardY = height / 3 - wizardHeight;
+
+    return wizardY;
+  };
+</script>
 
 </body>
 </html>
