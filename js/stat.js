@@ -32,7 +32,7 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, 'rgba(0, 0, 0, 0.7)', CLOUD_X + SHADOW_MOVING, CLOUD_Y + SHADOW_MOVING);
   renderCloud(ctx, '#fff', CLOUD_X, CLOUD_Y);
 
-  ctx.font = '16px PT Mono';
+  ctx.font = '18px PT Mono';
   ctx.textBaseline = 'hanging';
   ctx.fillText('Ура вы победили!', CLOUD_X + CLOUD_MARGIN, CLOUD_Y + CLOUD_MARGIN);
   ctx.fillText('Список результатов:', CLOUD_X + CLOUD_MARGIN, CLOUD_Y + CLOUD_MARGIN + LINE_HEIGHT);
