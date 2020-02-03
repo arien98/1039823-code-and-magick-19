@@ -28,26 +28,25 @@ var getMaxElement = function (arr) {
   }
 };
 
-// eslint-disable-next-line no-unused-vars
-var renderStatistics = function (ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, 'rgba(0, 0, 0, 0.7)', CLOUD_X + SHADOW_MOVING, CLOUD_Y + SHADOW_MOVING);
   renderCloud(ctx, '#fff', CLOUD_X, CLOUD_Y);
 
   ctx.font = '16px PT Mono';
   ctx.textBaseline = 'hanging';
-  ctx.fillText = ('Ура вы победили!', CLOUD_X + CLOUD_MARGIN, CLOUD_Y + CLOUD_MARGIN);
-  ctx.fillText = ('Список результатов:', CLOUD_X + CLOUD_MARGIN, CLOUD_Y + CLOUD_MARGIN + LINE_HEIGHT);
+  ctx.fillText('Ура вы победили!', CLOUD_X + CLOUD_MARGIN, CLOUD_Y + CLOUD_MARGIN);
+  ctx.fillText('Список результатов:', CLOUD_X + CLOUD_MARGIN, CLOUD_Y + CLOUD_MARGIN + LINE_HEIGHT);
 
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < times.length; i++) {
     barHeight[i] = times[i] / maxTime * BAR_MAX_HEIGHT;
-    if (i < 1) {
+    if (names[i] === 'Вы') {
       var barColor = 'rgba(255, 0, 0, 1)';
     } else {
       barColor = 'hsl(250, Math.random() * 100%, 50%)';
     }
     renderBar(ctx, barColor, (BAR_WIDTH + BAR_GAP) * i + CLOUD_MARGIN, CLOUD_MARGIN + LINE_HEIGHT * 2 + (BAR_MAX_HEIGHT - barHeight[i]), barHeight[i]);
-    ctx.fillText('names[i]', (BAR_WIDTH + BAR_GAP) * i + CLOUD_MARGIN, CLOUD_MARGIN + LINE_HEIGHT * 2 + BAR_MAX_HEIGHT + BAR_GAP / 2);
+    ctx.fillText(names[i], (BAR_WIDTH + BAR_GAP) * i + CLOUD_MARGIN, CLOUD_MARGIN + LINE_HEIGHT * 2 + BAR_MAX_HEIGHT + BAR_GAP / 2);
   }
 };
