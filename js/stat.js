@@ -5,11 +5,9 @@ var CLOUD_X = 100;
 var CLOUD_Y = 10;
 var CLOUD_HEIGHT = 270;
 var CLOUD_WIDTH = 420;
-var CLOUD_MARGIN = 20;
 var SHADOW_OFFSET = 10;
 
 // параметры текста
-var LINE_HEIGHT = 25;
 var TITLE_FONT = '16px PT Mono';
 var TITLE_COLOR = '#000';
 var TITLE_TEXT = 'Ура вы победили!';
@@ -83,7 +81,6 @@ var renderBar = function (ctx, times, names) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  console.log(names);
   renderCloud(ctx);
   renderTitle(ctx);
   renderBar(ctx, times, names);
