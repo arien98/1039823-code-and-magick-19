@@ -46,8 +46,8 @@ var renderTitle = function (ctx) {
   ctx.font = TITLE_FONT;
   ctx.textBaseline = 'hanging';
   ctx.fillStyle = TITLE_COLOR;
-  ctx.fillText(TITLE_TEXT, 130, 60);
-  ctx.fillText(TITLE_MSG, 130, 40);
+  ctx.fillText(TITLE_TEXT, 130, 50);
+  ctx.fillText(TITLE_MSG, 130, 30);
 };
 
 var getMaxElement = function (arr) {
@@ -77,6 +77,7 @@ var renderBar = function (ctx, times, names) {
     ctx.fillRect(BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y, BLOCK_WIDTH, BLOCK_HEIGHT * times[i] / maxTime);
     ctx.fillStyle = TITLE_COLOR;
     ctx.fillText(names[i], BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y + 10, BLOCK_OFFSET);
+    ctx.fillText(Math.floor(times[i]), BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y + BLOCK_HEIGHT * times[i] / maxTime - 20, BLOCK_WIDTH, BLOCK_OFFSET);
   }
 };
 
