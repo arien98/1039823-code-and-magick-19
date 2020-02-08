@@ -72,7 +72,7 @@ var getRoundNumber = function (number) {
 };
 
 var renderBar = function (ctx, times, names) {
-  var maxTime = getMaxElement(getRoundNumber(times));
+  var maxTime = getRoundNumber(getMaxElement(times));
   for (var i = 0; i < times.length; i++) {
     ctx.fillStyle = getRandomColor();
     if (names[i] === 'Вы') {
@@ -80,7 +80,18 @@ var renderBar = function (ctx, times, names) {
     }
     ctx.fillRect(BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y, BLOCK_WIDTH, BLOCK_HEIGHT * getRoundNumber(times[i]) / maxTime);
     ctx.fillStyle = TITLE_COLOR;
+  }
+};
+
+var renderNames = function (ctx, names) {
+  for (var i = 0; i < names.length; i++) {
     ctx.fillText(names[i], BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y + 10, BLOCK_OFFSET);
+  }
+};
+
+var renderTimes = function (ctx, times) {
+  var maxTime = getMaxElement(times);
+  for (var i = 0; i < times.length; i++) {
     ctx.fillText(getRoundNumber(times[i]), BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y + BLOCK_HEIGHT * getRoundNumber(times[i]) / maxTime - 20, BLOCK_WIDTH, BLOCK_OFFSET);
   }
 };
@@ -89,6 +100,6 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx);
   renderTitle(ctx);
   renderBar(ctx, times, names);
-
-
+  renderNames(ctx, names);
+  renderTimes(ctx, times);
 };
