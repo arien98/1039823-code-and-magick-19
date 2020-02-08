@@ -96,6 +96,8 @@ var renderTimes = function (ctx, times) {
   }
 };
 
+// jkjkl
+
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx);
   renderTitle(ctx);
