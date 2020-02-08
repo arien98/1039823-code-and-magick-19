@@ -67,17 +67,21 @@ var getRandomColor = function () {
   return str1 + str2 + str3;
 };
 
+var getRoundNumber = function (number) {
+  return Math.floor(number);
+};
+
 var renderBar = function (ctx, times, names) {
-  var maxTime = getMaxElement(times);
+  var maxTime = getMaxElement(getRoundNumber(times));
   for (var i = 0; i < times.length; i++) {
     ctx.fillStyle = getRandomColor();
     if (names[i] === 'Вы') {
       ctx.fillStyle = blockColor;
     }
-    ctx.fillRect(BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y, BLOCK_WIDTH, BLOCK_HEIGHT * times[i] / maxTime);
+    ctx.fillRect(BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y, BLOCK_WIDTH, BLOCK_HEIGHT * getRoundNumber(times[i]) / maxTime);
     ctx.fillStyle = TITLE_COLOR;
     ctx.fillText(names[i], BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y + 10, BLOCK_OFFSET);
-    ctx.fillText(Math.floor(times[i]), BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y + BLOCK_HEIGHT * times[i] / maxTime - 20, BLOCK_WIDTH, BLOCK_OFFSET);
+    ctx.fillText(getRoundNumber(times[i]), BLOCK_X + BLOCK_OFFSET * i, BLOCK_Y + BLOCK_HEIGHT * getRoundNumber(times[i]) / maxTime - 20, BLOCK_WIDTH, BLOCK_OFFSET);
   }
 };
 
