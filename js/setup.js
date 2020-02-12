@@ -49,7 +49,7 @@ var getRandomElement = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-var renderWizard = function () {
+var createWizard = function () {
   var wizardElement = similarWizardTemplate.cloneNode(true);
   wizardElement.querySelector('.setup-similar-label').textContent = getRandomElement(WIZARD_NAMES) + ' ' + getRandomElement(WIZARD_SERNAMES);
   wizardElement.querySelector('.wizard-coat').style.fill = getRandomElement(WIZARD_COAT_COLOR);
@@ -64,7 +64,7 @@ var addTemplates = function (place) {
 var fragment = document.createDocumentFragment();
 
 for (var i = 0; i < 4; i++) {
-  fragment.appendChild(renderWizard());
+  fragment.appendChild(createWizard());
 }
 
 addTemplates(similarListElement);
