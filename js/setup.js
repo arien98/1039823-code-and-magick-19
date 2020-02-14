@@ -1,12 +1,5 @@
 'use strict';
 
-var showHidden = function (popup) {
-  popup.classList.remove('hidden');
-};
-
-showHidden(document.querySelector('.setup'));
-showHidden(document.querySelector('.setup-similar'));
-
 var WIZARD_NAMES = [
   'Иван',
   'Хуан',
@@ -48,6 +41,11 @@ var getRandomElement = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
+var showPopup = function () {
+  document.querySelector('.setup').classList.remove('hidden');
+  document.querySelector('.setup-similar').classList.remove('hidden');
+};
+
 var createWizard = function () {
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -59,11 +57,12 @@ var createWizard = function () {
 
 var renderWizard = function () {
   var fragment = document.createDocumentFragment();
+  var similarListElement = document.querySelector('.setup-similar-list');
   for (var i = 0; i < 4; i++) {
     fragment.appendChild(createWizard());
   }
-  var similarListElement = document.querySelector('.setup-similar-list');
   similarListElement.appendChild(fragment);
 };
 
 renderWizard();
+showPopup();
