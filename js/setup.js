@@ -37,13 +37,47 @@ var WIZARD_EYES_COLOR = [
   'green'
 ];
 
+var ESCAPE_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
+
+var FIREBALL_COLOR = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+
+var openSetupButton = document.querySelector('.setup-open');
+var closeSetupButton = document.querySelector('.setup-close');
+var wizard = document.querySelector('.setup-player');
+var wizardCoat = wizard.querySelector('.wizard-coat');
+var wizardEyes = wizard.querySelector('.wizard-eyes');
+var wizardFireball = wizard.querySelector('.setup-fireball-wrap');
+var wizardCoatInput = wizard.querySelector('input[name="coat-color"]');
+var wizardEyesInput = wizard.querySelector('input[name="eyes-color"]');
+var wizardFireballInput = wizard.querySelector('input[name="fireball-color"]');
+
 var getRandomElement = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-var showPopup = function () {
+var showSetup = function () {
   document.querySelector('.setup').classList.remove('hidden');
+};
+
+var closeSetup = function () {
+  document.querySelector('.setup').classList.add('hidden');
+};
+
+var showPopup = function () {
+  showSetup();
   document.querySelector('.setup-similar').classList.remove('hidden');
+};
+
+var closePopup = function () {
+  closeSetup();
+  document.querySelector('.setup-similar').classList.add('hidden');
 };
 
 var createWizard = function () {
@@ -64,5 +98,53 @@ var renderWizard = function () {
   similarListElement.appendChild(fragment);
 };
 
+var changeColor = function (element, elementInput, style) {
+  element.addEventListener('click', function () {
+    var color = getRandomElement(style);
+    console.log(color);
+    element.style.fill = color;
+    elementInput.value = color;
+  });
+};
+
+var changeFireballColor = function () {
+  wizardFireball.addEventListener('click', function () {
+    var color = getRandomElement(FIREBALL_COLOR);
+    console.log(color);
+    wizardFireball.style.background = color;
+    wizardFireballInput.value = color;
+  });
+};
+
 renderWizard();
-showPopup();
+
+openSetupButton.addEventListener('click', function () {
+  showSetup();
+
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === ESCAPE_KEY) {
+      closePopup();
+    }
+  });
+});
+
+openSetupButton.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    showSetup();
+  }
+});
+
+closeSetupButton.addEventListener('click', function () {
+  closeSetup();
+});
+
+closeSetupButton.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closeSetup();
+  }
+});
+
+
+changeColor(wizardCoat, wizardCoatInput, WIZARD_COAT_COLOR);
+changeColor(wizardEyes, wizardEyesInput, WIZARD_EYES_COLOR);
+changeFireballColor();
